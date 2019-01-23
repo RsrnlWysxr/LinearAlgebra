@@ -30,6 +30,25 @@ class Matrix:
         """返回矩阵的列数"""
         return self.shape()[1]
 
+    def dot(self, anther):
+        """返回矩阵乘法的结果"""
+        if isinstance(anther, Vector):
+            # 与向量相乘
+            assert self.col_num() == len(anther), \
+                "Error in Matrix-Vector multiplication"
+            return Vector([self.row_vector(i).dot(anther) for i in range(self.row_num())])
+        if isinstance(anther, Matrix):
+            # 与矩阵相乘
+            assert self.col_num() == anther.row_num(), \
+                "Error in Matrix-Matrix multiplication"
+            return Matrix([[self.row_vector(i).dot(anther.col_vector(j)) for j in range(anther.col_num())]
+                           for i in range(self.row_num())])
+
+    def T(self):
+        """返回矩阵的转置"""
+        return Matrix([[e for e in self.col_vector(i)]
+                       for i in range(self.col_num())])
+
     __len__ = row_num
 
     def __repr__(self):
