@@ -25,11 +25,17 @@ if __name__ == '__main__':
     #
     # print("{} / {} = {}".format(matrix, 2, matrix / 2))
 
-    T = Matrix([[1.5, 0], [0, 2]])
-    p = Vector([5, 3])
-    print("T.dot(p) = {}".format(T.dot(p)))
-    P = Matrix([[0, 4, 5], [0, 0, 3]])
-    print("T.dot(P) = {}".format(T.dot(P)))
+    # T = Matrix([[1.5, 0], [0, 2]])
+    # p = Vector([5, 3])
+    # print("T.dot(p) = {}".format(T.dot(p)))
+    # P = Matrix([[0, 4, 5], [0, 0, 3]])
+    # print("T.dot(P) = {}".format(T.dot(P)))
+    # print("P.T = {}".format(P.T()))
+    #
+    # zero2 = Matrix.zero(2,2)
+    # print(zero2)
 
-    print("P.T = {}".format(P.T()))
+    I = Matrix.identity(2)
+    print(I)
+    print(matrix.dot(I))
 

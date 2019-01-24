@@ -22,3 +22,14 @@ if __name__ == '__main__':
 
     # 矩阵点乘
     print("{}".format( T.dot(P)))
+
+    # 单位矩阵
+    I = np.identity(2)
+    print("T.dot(I) = \n{}".format(T.dot(I)))
+    print("I.dot(T) = \n{}".format(I.dot(T)))
+
+    # 逆矩阵
+    invA = np.linalg.inv(T)
+    print(invA)
+    print(invA.dot(T))
+    print(T.dot(invA))

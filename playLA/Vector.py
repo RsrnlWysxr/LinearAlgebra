@@ -1,5 +1,5 @@
 import math
-from ._globals import EPSILON
+from ._globals import is_zero
 
 class Vector:
 
@@ -17,7 +17,7 @@ class Vector:
 
     def normalize(self):
         """返回向量的单位向量"""
-        if self.norm() < EPSILON:
+        if is_zero(self.norm()):
             raise ZeroDivisionError("Normalize error! Norm is zero.")
         return Vector(self / self.norm())
 
@@ -25,6 +25,10 @@ class Vector:
         assert len(self) == len(other), \
             "Error in product, Length of vectors must be same"
         return sum(a * b for a, b in zip(self, other))
+
+    def underlying_list(self):
+        """返回原先列表的拷贝"""
+        return self._values[:]
 
     def __add__(self, other):
         """向量加法，返回结果向量"""

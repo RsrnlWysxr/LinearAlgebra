@@ -5,6 +5,19 @@ class Matrix:
     def __init__(self, lst2d):
         self._values = [row for row in lst2d]
 
+    @classmethod
+    def zero(cls, r, c):
+        """返回一个r行c列的零矩阵"""
+        return cls([[0] * c for _ in range(r)])
+
+    @classmethod
+    def identity(cls, n):
+        """返回一个n行n列单位矩阵"""
+        ret = [[0] * n for _ in range(n)]
+        for i in range(n):
+            ret[i][i] = 1
+        return cls(ret)
+
     def size(self):
         """返回矩阵的元素个数"""
         r, c = self.shape()
