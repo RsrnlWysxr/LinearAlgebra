@@ -4,13 +4,15 @@ from ._globals import is_zero
 
 class LinearSystem:
 
-    def __init__(self, A, b):
+    def __init__(self, A, b = None):
 
-        assert A.row_num() == len(b), \
+        assert b is None or A.row_num() == len(b), \
             "row number of A must be equal to length of b"
         self._m = A.row_num()
         self._n = A.col_num()
         # 增广矩阵
+        if b is None:
+            self.Ab = [A.row_vector(i) for i in range(self._m)]
         if isinstance(b, Vector):
             self.Ab = [Vector(A.row_vector(i).underlying_list() + [b[i]])
                        for i in range(self._m)]
@@ -72,6 +74,7 @@ class LinearSystem:
             print(" ".join(str(self.Ab[i][j]) for j in range(self._n)), end=' ')
             print('|', self.Ab[i][-1])
 
+
 def inv(A):
     """返回方阵的逆"""
     if A.row_num() != A.col_num():
@@ -87,3 +90,11 @@ def inv(A):
             for row in ls.Ab]
     return Matrix(invA)
 
+
+def rank(A):
+    ls = LinearSystem(A)
+    ls.gauss_jordan_elimination()
+
+    zero = Vector.zero(A.col_num())
+
+    return sum([row != zero for row in ls.Ab])

@@ -3,7 +3,10 @@ from .Vector import Vector
 class Matrix:
 
     def __init__(self, lst2d):
-        self._values = [row for row in lst2d]
+        if isinstance(lst2d[0], list):
+            self._values = [row for row in lst2d]
+        elif isinstance(lst2d[0], Vector):
+            self._values = [row.underlying_list() for row in lst2d]
 
     @classmethod
     def zero(cls, r, c):

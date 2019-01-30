@@ -26,3 +26,7 @@ if __name__ == "__main__":
         print("Cannot normalize zero vector {}.".format(zero2))
 
     print("{} . {} = {}".format(vec, vec2, vec.dot(vec2)))
+
+    print("{} == {}? {}".format(vec, vec2, vec == vec2))
+    print("{} != {}? {}".format(vec, vec2, vec != vec2))
+    print("{} == {}? {}".format(zero2, Vector.zero(2), zero2 == Vector.zero(2)))
